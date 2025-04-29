@@ -1,0 +1,101 @@
+<template>
+  <div class="about">
+    <div class="column">
+      <h1>This is Circle Progress Bars</h1>
+      <progress-bar
+        :size="150"
+        :stroke-width="10"
+        :bar-width="10"
+        :percentage="percentage"
+      />
+      <progress-bar
+        :size="100"
+        :bar-width="8"
+        :percentage="50"
+        :progress-bar-status="ProgressBarStatus.ERROR"
+      />
+      <progress-bar
+        :size="80"
+        :bar-width="6"
+        :percentage="75"
+        :progress-bar-status="ProgressBarStatus.WARNING"
+      />
+      <progress-bar
+        :size="60"
+        :bar-width="5"
+        :percentage="100"
+        :progress-bar-status="ProgressBarStatus.SUCCESS"
+      />
+    </div>
+    <div class="column">
+      <h1>This is Dashboard Progress Bars</h1>
+      <progress-bar
+        :size="150"
+        :bar-width="10"
+        :percentage="percentage"
+        :bar-type="ProgressBarType.DASHBOARD"
+      />
+      <progress-bar
+        :size="100"
+        :bar-width="8"
+        :percentage="50"
+        :progress-bar-status="ProgressBarStatus.ERROR"
+        :bar-type="ProgressBarType.DASHBOARD"
+      />
+      <progress-bar
+        :size="80"
+        :bar-width="6"
+        :percentage="75"
+        :progress-bar-status="ProgressBarStatus.WARNING"
+        :bar-type="ProgressBarType.DASHBOARD"
+      />
+      <progress-bar
+        :size="60"
+        :bar-width="5"
+        :percentage="100"
+        :progress-bar-status="ProgressBarStatus.SUCCESS"
+        :bar-type="ProgressBarType.DASHBOARD"
+      />
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import ProgressBar from '@/components/ProgressBar/ProgressBar.vue'
+import { ref } from 'vue'
+import { ProgressBarStatus, ProgressBarType } from '@/components/ProgressBar/interfaces.ts'
+
+const percentage = ref(0)
+
+const intervalId = setInterval(() => {
+  if (percentage.value < 100) {
+    percentage.value = percentage.value + 10
+  } else {
+    percentage.value = 0
+    // clearInterval(intervalId)
+  }
+}, 1000)
+</script>
+
+<style>
+@media (min-width: 1024px) {
+  .about {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .column {
+      .h1 {
+        text-align: center;
+      }
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+  }
+}
+</style>
