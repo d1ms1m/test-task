@@ -1,5 +1,0 @@
-export interface SectorListItem {
-  name: string,
-  value: number,
-  color: string,
-}
